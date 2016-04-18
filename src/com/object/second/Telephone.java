@@ -1,4 +1,4 @@
-package com.sammffl;
+package com.object.second;
 
 /**
  * Created by SamMFFL on 2016/4/18.
@@ -9,7 +9,7 @@ public class Telephone {
     private float mem;
 
     public Telephone() {
-        System.out.println("无参构造函数方法执行了！");
+        System.out.println("com.sammffl.second 无参构造函数方法执行了！");
     }
 
     public Telephone(float newScreen, float newCpu, float newMem) {
