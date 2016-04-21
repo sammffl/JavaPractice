@@ -1,5 +1,6 @@
 package com.sammffl.reflection;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /**
@@ -38,6 +39,20 @@ public class ClassUtil {
                     returnType,
                     methodName,
                     params));
+
+            /**
+             * 成员变量也是对象
+             * java.lang.reflect.Field
+             * Field类封装了关于成员变量的操作
+             */
+            Field[] fs = c.getFields();
+//            Field[] fs  =c.getDeclaredFields();
+            for (Field field : fs) {
+                Class fieldType = field.getType();
+                String typeName = fieldType.getName();
+                String fieldName = field.getName();
+                System.out.println(typeName + " " + fieldName);
+            }
         }
     }
 }

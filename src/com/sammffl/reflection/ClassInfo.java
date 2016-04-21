@@ -8,5 +8,8 @@ public class ClassInfo {
         String s = "java.lang.Object ,";
         Work work = new Work();
         ClassUtil.printClassMessage(work);
+
+        Integer n1 = 1;
+        ClassUtil.printClassMessage(n1);
     }
 }
