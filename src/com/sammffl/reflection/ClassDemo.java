@@ -20,5 +20,8 @@ public class ClassDemo {
         System.out.println(c3);
         System.out.println(c4);
 
+
+        String s = "''";
+        ClassUtil.printClassMessage(s);
     }
 }
