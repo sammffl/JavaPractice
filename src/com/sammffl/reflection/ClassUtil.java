@@ -1,5 +1,6 @@
 package com.sammffl.reflection;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -20,8 +21,8 @@ public class ClassUtil {
          * getMethod()获取public方法
          * getDeclaredMethod()获取所有声明方法
          */
-//        Method[] ms = c.getMethods();
-        Method[] ms = c.getDeclaredMethods();
+        Method[] ms = c.getMethods();
+//        Method[] ms = c.getDeclaredMethods();
 
         for (int i = 0; i < ms.length; i++) {
             //获取方法的返回值类型
@@ -39,20 +40,52 @@ public class ClassUtil {
                     returnType,
                     methodName,
                     params));
+            getClassFields(c);
 
-            /**
-             * 成员变量也是对象
-             * java.lang.reflect.Field
-             * Field类封装了关于成员变量的操作
-             */
-            Field[] fs = c.getFields();
+
+        }
+    }
+
+    /**
+     * 获取成员变量信息
+     * Field类封装了关于成员变量的操作
+     *
+     * @param c 对象的类类型
+     */
+    public static void getClassFields(Class c) {
+
+        Field[] fs = c.getFields();
 //            Field[] fs  =c.getDeclaredFields();
-            for (Field field : fs) {
-                Class fieldType = field.getType();
-                String typeName = fieldType.getName();
-                String fieldName = field.getName();
-                System.out.println(typeName + " " + fieldName);
+        for (Field field : fs) {
+            Class fieldType = field.getType();
+            String typeName = fieldType.getName();
+            String fieldName = field.getName();
+            System.out.println(typeName + " " + fieldName);
+        }
+    }
+
+    /**
+     * 打印对象的构造函数的信息
+     *
+     * @param obj
+     */
+    public static void printConMessage(Object obj) {
+        Class c = obj.getClass();
+        /*
+         * 构造函数也是对象
+         * java.lang.Constructor中封装了构造函数的信息
+         * getConstructors获取
+         */
+//        Constructor[] cs = c.getConstructors();
+        Constructor[] cs = c.getDeclaredConstructors();
+        for (Constructor constructor : cs) {
+            Class[] paramTypes = constructor.getParameterTypes();
+            System.out.print(constructor.getName() + "(");
+
+            for (Class class1 : paramTypes) {
+                System.out.print(class1.getName() + ",");
             }
+            System.out.println(")");
         }
     }
 }
